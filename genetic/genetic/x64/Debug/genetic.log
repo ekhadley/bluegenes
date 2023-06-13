@@ -1,0 +1,27 @@
+﻿  genetic.cpp
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(35,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(41,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(42,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(50,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(51,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\agent.h(57,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(15,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(15,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(15,23): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(16,22): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(25,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(26,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(42,41): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(42,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(71,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(72,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(77,21): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\render.h(101,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\genetic.cpp(11,23): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\genetic.cpp(12,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\genetic.cpp(12,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\genetic.cpp(12,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\genetic.cpp(12,13): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ek\Desktop\wgmn\bluegenes\genetic\genetic\genetic.cpp(25,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  genetic.vcxproj -> C:\Users\ek\Desktop\wgmn\bluegenes\genetic\x64\Debug\genetic.exe
