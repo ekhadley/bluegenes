@@ -13,6 +13,7 @@ public:
         glfwInit();
         window = glfwCreateWindow(w, h, name, NULL, NULL);
         glfwMakeContextCurrent(window);
+        glfwSetMouseButtonCallback(window, onClick);
         setClearColor(.1, .1, .1, 1);
         setLineWidth(1.5);
         setDrawColor(0.0f, .8f, 1.0f);
@@ -40,39 +41,58 @@ public:
 		coordToScale(x, y, wing2x, wing2y);
 		
         //glfwMakeContextCurrent(window);
-        if(a.dead){ setDrawColor(1, .1, .35); }
-        else{ setDrawColor(0, 1, .5); }
-        glBegin(GL_POLYGON);
-        glVertex2f(nosex, nosey);
+
+		if(a.dead){ setDrawColor(1, .1, .35); }
+		else{ setDrawColor(0, 1, .5); }
+		glBegin(GL_POLYGON);
+		glVertex2f(nosex, nosey);
 		glVertex2f(wing1x, wing1y);
 		glVertex2f(tailx, taily);
 		glVertex2f(wing2x, wing2y);
-        glEnd();
+		glEnd();
+		
         setDrawColor(0, 0, 0);
-        glBegin(GL_LINE_LOOP);
-        glVertex2f(nosex, nosey);
+		glBegin(GL_LINE_LOOP);
+		glVertex2f(nosex, nosey);
 		glVertex2f(wing1x, wing1y);
 		glVertex2f(tailx, taily);
 		glVertex2f(wing2x, wing2y);
-        glEnd();
-    }
+		glEnd();
+        }
+
     void drawEnv(environment env){
+        drawGoal(env);
+        drawWalls(env);
+        drawAgents(env);
+    }
+
+    void drawGoal(environment env) {
         setDrawColor(.9, 0, .5);
         setLineWidth(3);
 		drawCircle(env.gpos.x, env.gpos.y, env.goalsize);
-        
+    }
+
+    void drawAgents(environment env) {
+        setDrawColor(0, 1, .5);
+        setLineWidth(1.5);
+        for (int i = 0; i < env.p.poolSize; i++) {
+            agent a = env.agentAt(i);
+            drawAgent(a);
+        }
+    }
+
+    void drawWalls(environment env) {
         setDrawColor(.5, 0, .9);
         for (int i = 0; i < env.walls.size(); i++) {
             vec2d w = env.walls.at(i);
             drawCircle(w.x, w.y, env.wallsize, true);
         }
-        setDrawColor(0, 1, .5);
-        setLineWidth(1.5);
-        for (int i = 0; i < env.p.poolsize; i++) {
-            agent a = env.p.genepool.at(i);
-            drawAgent(a);
-        }
     }
+
+    void onClick(GLFWwindow* win, int button, int action, int mods) {
+        
+    }
+
     void coordToScale(float coordX, float coordY, float& scaleX, float& scaleY) {
         scaleX = 2.0*coordX/width - 1;
         scaleY = 2.0*coordY/height - 1;

@@ -6,6 +6,7 @@
 std::random_device rd;
 std::mt19937 mt(rd());
 std::uniform_real_distribution<double> dist(-1.0, 1.0);
+std::uniform_real_distribution<double> udist(0.0, 1.0);
 
 class agent {
 private:
@@ -13,13 +14,14 @@ private:
 public:
 	vec2d pos;
 	vec2d vel;
-	float limit;
-	int lifespan;
-	float fitness = 1000000;
-	float ascale;
-	float maxx, maxy;
+	float limit = 2;
 	int age = 0;
+	bool test = false;
+	int lifespan;
+	float fitness = 100000;
+	float ascale;
 	bool dead = false;
+	
 	agent(float x, float y, int lspan, float asc=0.1){
 		pos.x = x;
 		pos.y = y;
@@ -28,6 +30,7 @@ public:
 		dna = new vec2d[lifespan];
 		randomizeDNA();
 	}
+	
 	void randomizeDNA() {
 		for (int i = 0; i < lifespan; i++) {
 			float rx = dist(rd)*ascale;
@@ -35,6 +38,28 @@ public:
 			dna[i].add(rx, ry);
 		}
 	}
+	
+	void inherit(agent a, float inheritRate) {
+		for (int i = 0; i < lifespan; i++) {
+			float r = udist(rd);
+			if (r < inheritRate) {
+				vec2d v = a.getDNA(i);
+				dna[i] = vec2d(v.x, v.y);
+			}
+		 }
+	}
+	
+	void mutate(float mutateRate) {
+		for (int i = 0; i < lifespan; i++) {
+			float r = udist(rd);
+			if (r < mutateRate) {
+				float rx = dist(rd)*ascale;
+				float ry = dist(rd)*ascale;
+				dna[i] = vec2d(rx, ry);
+			}
+		 }
+	}
+	
 	void step() {
 		if (!dead) {
 			vec2d d = dna[age];
@@ -47,4 +72,12 @@ public:
 			}
 		}
 	}
+	
+	vec2d getDNA(int idx) {
+		return dna[idx];
+	}
+
+	bool operator==(agent other) { return other.fitness == fitness; }
+	bool operator>(agent other) { return fitness > other.fitness; }
+	bool operator<(agent other) { return fitness < other.fitness; }
 };
