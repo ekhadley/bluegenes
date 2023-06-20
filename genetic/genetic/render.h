@@ -8,6 +8,8 @@ class renderer {
 public:
     int width, height;
     GLFWwindow* window;
+    double mouseX, mouseY;
+    bool rightPressed, leftPressed = false;
 
     renderer(int w, int h, char* name) : width(w), height(h) {
         glfwInit();
@@ -89,10 +91,6 @@ public:
         }
     }
 
-    void onClick(GLFWwindow* win, int button, int action, int mods) {
-        
-    }
-
     void coordToScale(float coordX, float coordY, float& scaleX, float& scaleY) {
         scaleX = 2.0*coordX/width - 1;
         scaleY = 2.0*coordY/height - 1;
@@ -111,9 +109,17 @@ public:
         glClearColor(r, g, b, a);
     }
     void swapBuffers() { glfwSwapBuffers(window); }
-    void pollEvents(double& mouseX, double& mouseY) {
+    static void onClick(GLFWwindow* window, int button, int action, int mods) {
+        1;
+    }
+    vec2d getMousePos() {
+        return vec2d(mouseX, height-mouseY);
+    }
+    void pollEvents() {
         glfwPollEvents();
         glfwGetCursorPos(window, &mouseX, &mouseY);
+        leftPressed = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+        rightPressed = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
     }
     void clear() { glClear(GL_COLOR_BUFFER_BIT); }
     void kill() { glfwTerminate(); }

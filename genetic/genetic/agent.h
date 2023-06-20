@@ -22,11 +22,12 @@ public:
 	float ascale;
 	bool dead = false;
 	
-	agent(float x, float y, int lspan, float asc=0.1){
+	agent(float x, float y, int lspan, float speedlimit, float asc = 0.1) {
 		pos.x = x;
 		pos.y = y;
 		ascale = asc;
 		lifespan = lspan;
+		limit = speedlimit;
 		dna = new vec2d[lifespan];
 		randomizeDNA();
 	}
@@ -39,11 +40,11 @@ public:
 		}
 	}
 	
-	void inherit(agent a, float inheritRate) {
+	void inherit(agent parent, float inheritRate) {
 		for (int i = 0; i < lifespan; i++) {
 			float r = udist(rd);
 			if (r < inheritRate) {
-				vec2d v = a.getDNA(i);
+				vec2d v = parent.getDNA(i);
 				dna[i] = vec2d(v.x, v.y);
 			}
 		 }

@@ -3,7 +3,6 @@
 #include "agent.h"
 #include "pool.h"
 
-
 class environment {
 public:
 	int width, height, wallsize, poolSize, goalsize;
@@ -15,7 +14,7 @@ public:
 	std::vector<vec2d> walls;
 	vec2d gpos;
 	vec2d startpos;
-	environment(int w, int h, int startx, int starty, float gx, float gy, int psize, int lifespan, int wsize = 34, int gsize = 25) {
+	environment(int w, int h, int startx, int starty, float gx, float gy, int psize, int lifespan, float speedlimit, int wsize = 25, int gsize = 25) {
 		width = w;
 		height = h;
 		poolSize = psize;
@@ -34,16 +33,15 @@ public:
 			wallmask[i] = false;
 		}
 	}
-	environment(int w, int h, int psize, int lifespan, int wsize = 34, int gsize = 25) {
+	environment(int w, int h, int psize, int lifespan, float speedlimit, int wsize = 25, int gsize = 25) {
 		drawMode = true;
 		width = w;
 		height = h;
 		poolSize = psize;
 		goalsize = gsize;
-		p.startpos = startpos;
 		p.poolSize = psize;
 		p.lifespan = lifespan;
-		p.populate();
+		p.limit = speedlimit;
 		wallsize = wsize;
 		wallmask = new bool[w * h];
 		for (int i = 0; i < w * h; i++) {
@@ -76,7 +74,7 @@ public:
 				}
 				float dx = a.pos.x - gpos.x;
 				float dy = a.pos.y - gpos.y;
-				if ((dx * dx + dy * dy) < goalsize * goalsize) { kill(a); a.fitness = a.age; }
+				if ((dx * dx + dy * dy) < goalsize * goalsize) { kill(a); a.fitness = (float)a.age/a.lifespan; }
 			}
 		}
 	}
@@ -102,9 +100,9 @@ public:
 	
 	void updateAgents(int* ranks, int parentCutoff, float inheritRate, float mutateRate) {
 		for (int i = parentCutoff; i < poolSize; i++) {
-			agent& a = agentAt(i);
+			agent& a = agentAt(ranks[i]);
 			int pindex = udist(rd) * parentCutoff;
-			agent& parent = agentAt(ranks[pindex]);
+			agent parent = agentAt(ranks[pindex]);
 			a.inherit(parent, inheritRate);
 			a.mutate(mutateRate);
 		}

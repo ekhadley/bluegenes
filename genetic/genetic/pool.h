@@ -8,7 +8,8 @@ public:
 	vec2d startpos;
 	int poolSize;
 	int lifespan = -1;
-	pool() { startpos.x = 0; startpos.y = 0; poolSize = 0; }
+	float limit = 1;
+	pool() { startpos.x = 0; startpos.y = 0; poolSize = 0;}
 	pool(float sx, float sy, int psize) {
 		poolSize = psize;
 		startpos.x = sx;
@@ -16,7 +17,7 @@ public:
 		}
 	void populate() {
 		for (int i = 0; i < poolSize; i++) {
-			genepool.push_back(agent(startpos.x, startpos.y, lifespan));
+			genepool.push_back(agent(startpos.x, startpos.y, lifespan, limit));
 		}
 	}
 	int* sorted() {
