@@ -9,7 +9,7 @@ int main() {
     char name[] = "grrrr";
     renderer r(w, h, name);
     //environment env(w, h, w/2, h/2, 35, h-35, 5000, 2000);
-    environment env(w, h, 30000, 1500, 1);
+    environment env(w, h, 10000, 1500, 1);
 
 	if (env.drawMode) {
 		bool goalPlaced = false;
@@ -66,7 +66,7 @@ int main() {
 			float spf = (std::chrono::high_resolution_clock::now() - start).count() / 1000000000.0;
 			std::cout << "fps: " << 1.0 / spf << std::endl;
         }
-        env.reset(500, .3, .01);
+        env.reset(500, .3, .1);
     }
     r.kill();
     return 0;
